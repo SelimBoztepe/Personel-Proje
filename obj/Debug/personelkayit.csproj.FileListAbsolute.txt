@@ -24,3 +24,7 @@ C:\Users\user\source\repos\personelkayit\personelkayit\obj\Debug\personelkayit.e
 C:\Users\user\source\repos\personelkayit\personelkayit\obj\Debug\personelkayit.pdb
 C:\Users\user\source\repos\personelkayit\personelkayit\obj\Debug\personelkayit.Form2.resources
 C:\Users\user\source\repos\personelkayit\personelkayit\obj\Debug\personelkayit.Form3.resources
+C:\Users\user\source\repos\personelkayit\personelkayit\bin\Debug\personelkayit.exe.manifest
+C:\Users\user\source\repos\personelkayit\personelkayit\bin\Debug\personelkayit.application
+C:\Users\user\source\repos\personelkayit\personelkayit\obj\Debug\personelkayit.exe.manifest
+C:\Users\user\source\repos\personelkayit\personelkayit\obj\Debug\personelkayit.application

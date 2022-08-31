@@ -15,6 +15,7 @@ namespace personelkayit
     {
        MySqlConnection baglanti;
        MySqlCommand komut;
+       MySqlCommand komut1;
        MySqlDataAdapter da;
 
 
@@ -59,6 +60,8 @@ namespace personelkayit
 
         private void btnKayıt_Click(object sender, EventArgs e)
         {
+            string islem = "kayıt";
+            string user = txtAd.Text;
             MySqlConnection baglanti = new MySqlConnection("Server=localhost;Database=personel;uid=root;Pwd='pew6m7yw';");
             string sorgu = " INSERT INTO kullanicilar(kullanici_no,kullanici_ad,kullanici_soyad,kullanici_sifre,kullanici_mail) VALUES (@kullanici_no,@kullanici_ad,@kullanici_soyad,@kullanici_sifre,@kullanici_mail) ";
             MySqlCommand komut = new MySqlCommand(sorgu, baglanti);
@@ -70,6 +73,16 @@ namespace personelkayit
             baglanti.Open();
             komut.ExecuteNonQuery();
             baglanti.Close();
+            baglanti.Open();
+            string sorgu2 = " INSERT INTO log(time,islem,username) VALUES (@time,@islem,@username) ";
+            MySqlCommand komut1 = new MySqlCommand(sorgu2, baglanti);
+            DateTime now = DateTime.Now;
+            string v = now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+            komut1.Parameters.AddWithValue("@time", v);
+            komut1.Parameters.AddWithValue("@islem", islem);
+            komut1.Parameters.AddWithValue("@username", user);
+            komut1.ExecuteNonQuery();
+            baglanti.Close();
             KullaniciListele();
             
 
@@ -78,6 +91,8 @@ namespace personelkayit
 
         private void btnSilme_Click(object sender, EventArgs e)
         {
+            string islem = "silme";
+            string user = txtAd.Text;
             MySqlConnection baglanti = new MySqlConnection("Server=localhost;Database=personel;uid=root;Pwd='pew6m7yw';");
             string sorgu = "DELETE FROM kullanicilar WHERE kullanici_no=@kullanici_no";
             MySqlCommand komut = new MySqlCommand(sorgu, baglanti);
@@ -85,11 +100,23 @@ namespace personelkayit
             baglanti.Open();
             komut.ExecuteNonQuery();
             baglanti.Close();
+            baglanti.Open();
+            string sorgu2 = " INSERT INTO log(time,islem,username) VALUES (@time,@islem,@username) ";
+            MySqlCommand komut1 = new MySqlCommand(sorgu2, baglanti);
+            DateTime now = DateTime.Now;
+            string v = now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+            komut1.Parameters.AddWithValue("@time", v);
+            komut1.Parameters.AddWithValue("@islem", islem);
+            komut1.Parameters.AddWithValue("@username", user);
+            komut1.ExecuteNonQuery();
+            baglanti.Close();
             KullaniciListele();
         }
 
         private void btnGüncelleme_Click(object sender, EventArgs e)
         {
+            string islem = "güncelleme";
+            string user = txtAd.Text;
             DataGridViewCell kullanici_no = dataGridView1.CurrentRow.Cells[0];
             MySqlConnection baglanti = new MySqlConnection("Server=localhost;Database=personel;uid=root;Pwd='pew6m7yw';");
             string sorgu = "UPDATE kullanicilar SET kullanici_ad=@kullanici_ad,kullanici_soyad=@kullanici_soyad,kullanici_sifre=@kullanici_sifre,kullanici_mail=@kullanici_mail WHERE kullanici_no=@kullanici_no";
@@ -101,6 +128,16 @@ namespace personelkayit
             komut.Parameters.AddWithValue("@kullanici_mail", txtMail.Text);
             baglanti.Open();
             komut.ExecuteNonQuery();
+            baglanti.Close();
+            baglanti.Open();
+            string sorgu2 = " INSERT INTO log(time,islem,username) VALUES (@time,@islem,@username) ";
+            MySqlCommand komut1 = new MySqlCommand(sorgu2, baglanti);
+            DateTime now = DateTime.Now;
+            string v = now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+            komut1.Parameters.AddWithValue("@time", v);
+            komut1.Parameters.AddWithValue("@islem", islem);
+            komut1.Parameters.AddWithValue("@username", user);
+            komut1.ExecuteNonQuery();
             baglanti.Close();
             KullaniciListele();
 
